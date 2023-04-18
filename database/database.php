@@ -12,19 +12,26 @@ class Database {
 
     public function add($data)
     {
+        $id = $data['id'];
         $name = $data['name'];
         $description = $data['description'];
 
         try {
-            $sql = "INSERT into Notes (name,description,created) VALUES (:name,:description,now())";
+            $sql = "UPDATE  Notes SET name=:name,description=:description WHERE id = :id";
+
+            // $sql = "INSERT into Notes (name,description,created) VALUES (:name,:description,now())";
             $state = $this->db->prepare($sql);
             $state->execute(array(
                 ":name" => $name,
-                ":description" => $description
+                ":description" => $description,
+                ":id" => $id
+
             ));
-            
+
             if($state){
-                echo "Note Ajoutée";
+                 // echo "Note Ajoutée";
+                echo "Note Modifiée";
+
             }
         } catch (PDOException $exp) {
             echo "error" . $exp->getMessage();

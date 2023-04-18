@@ -5,7 +5,8 @@ $database = new Database();
 
 $data = array(
     'name' => 'Yassine benmansour',
-    'description' => 'hello from yassine '
+    'description' => 'hello from yassine update ',
+    'id' => '1'
 );
 
 
