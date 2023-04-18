@@ -63,7 +63,7 @@ class Database
     public function delete($data)
     {
         $id = $data['id'];
-        
+
 
         try {
 
@@ -83,4 +83,62 @@ class Database
             echo "error" . $exp->getMessage();
         }
     }
+
+
+
+    public function AffNotes()
+    {
+        try {
+
+            $sql = "SELECT * FROM  Notes ";
+            $state = $this->db->query($sql);
+            while ($note = $state->fetch(PDO::FETCH_OBJ)) {
+                $output = "
+                    <tr>
+                        <td>
+                            $note->name
+                        </td>
+                        <td>
+                            $note->description
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                ";
+                echo $output ;
+            }
+        } catch (PDOException $exp) {
+            echo "error" . $exp->getMessage();
+        }
+    }
+
+
+
+    public function AffNote($data)
+    {
+        $id = $data['id'];
+
+
+        try {
+
+            $sql = "SELECT * FROM  Notes WHERE id = :id";
+            $state = $this->db->prepare($sql);
+            $state->execute(array(
+                ":id" => $id
+
+            ));
+
+
+            $note = $state->fetch(PDO::FETCH_OBJ);
+
+            var_dump($note);
+
+           
+        } catch (PDOException $exp) {
+            echo "error" . $exp->getMessage();
+        }
+    }
+
+
 }
