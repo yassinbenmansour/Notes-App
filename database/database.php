@@ -113,12 +113,9 @@ class Database
         }
     }
 
-
-
     public function AffNote($data)
     {
         $id = $data['id'];
-
 
         try {
 
