@@ -102,6 +102,8 @@ class Database
                             $note->description
                         </td>
                         <td>
+                            <a href='update.php?id=$note->id' class='btn btn-sm btn-primary'>Modifier</a>
+                            <a href='delete.php?id=$note->id' class='btn btn-sm btn-danger'>Supprimée</a>
 
                         </td>
                     </tr>
