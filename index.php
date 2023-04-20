@@ -23,6 +23,7 @@ $database = new Database();
             </table>
         </div>
     </div>
+    <a href="add.php" class="btn btn-primary">Ajouter</a>
 </div>
 
 

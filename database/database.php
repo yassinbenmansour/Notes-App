@@ -22,11 +22,9 @@ class Database
             $state->execute(array(
                 ":name" => $name,
                 ":description" => $description,
-
             ));
-
             if ($state) {
-                echo "Note Ajoutée";
+                echo "<h1 class='alert alert-success text-center'>Note Ajouter</h1>";
             }
         } catch (PDOException $exp) {
             echo "error" . $exp->getMessage();
@@ -100,9 +98,8 @@ class Database
                             $note->description
                         </td>
                         <td>
-                            <a href='update.php?id=$note->id' class='btn btn-sm btn-primary'>Modifier</a>
+                            <a href='update.php?id=$note->id' class='btn btn-sm btn-warning'>Modifier</a>
                             <a href='delete.php?id=$note->id' class='btn btn-sm btn-danger'>Supprimée</a>
-
                         </td>
                     </tr>
                 ";
