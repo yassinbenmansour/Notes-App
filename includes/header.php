@@ -1,5 +1,8 @@
 <?php
+session_start();
 require("./database/database.php");
+$database = new Database(); 
+
 ?>
 
 <html lang="en">

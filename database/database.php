@@ -2,13 +2,11 @@
 class Database
 {
     private $db;
-
     function __construct()
     {
         $this->db = new PDO("mysql:host=localhost;dbname=Noteapp", "root", "");
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-
     public function add($data)
     {
         $name = $data['name'];
@@ -16,15 +14,14 @@ class Database
 
         try {
             $sql = "INSERT into Notes (name,description,created) VALUES (:name,:description,now())";
-
-
             $state = $this->db->prepare($sql);
             $state->execute(array(
                 ":name" => $name,
                 ":description" => $description,
             ));
             if ($state) {
-                echo "<h1 class='alert alert-success text-center'>Note Ajouter</h1>";
+                $_SESSION['added'] = "Note Ajoute";
+                $this->redirect('index.php');
             }
         } catch (PDOException $exp) {
             echo "error" . $exp->getMessage();
@@ -49,8 +46,9 @@ class Database
             ));
 
             if ($state) {
-                echo "Note Modifiée";
-            }
+                $_SESSION['mo'] = "Note Modifier";
+                $this->redirect('index.php')   ;
+             }
         } catch (PDOException $exp) {
             echo "error" . $exp->getMessage();
         }
@@ -59,21 +57,15 @@ class Database
     public function delete($data)
     {
         $id = $data['id'];
-
-
         try {
-
             $sql = "DELETE  FROM  Notes WHERE id = :id";
-
             $state = $this->db->prepare($sql);
             $state->execute(array(
                 ":id" => $id
-
             ));
-
             if ($state) {
-
-                echo "Note Supprimée";
+                $_SESSION['de'] = "Note supprimee";
+                $this->redirect('index.php');
             }
         } catch (PDOException $exp) {
             echo "error" . $exp->getMessage();
@@ -126,7 +118,7 @@ class Database
 
             $note = $state->fetch(PDO::FETCH_OBJ);
 
-            var_dump($note);
+            return($note);
 
            
         } catch (PDOException $exp) {
@@ -134,5 +126,10 @@ class Database
         }
     }
 
+
+
+    public function redirect($page){
+        header("location:".$page);
+    }
 
 }

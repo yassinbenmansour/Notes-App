@@ -1,12 +1,14 @@
 <?php
+session_start();
 require("./includes/header.php");
-$database = new Database(); 
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])){
     $data['name'] = $_POST['titre'];
     $data['description'] = $_POST['desc'];
+
     $database->add($data);
 }
+
 ?>
 <div style="width: 50%;" class="mx-auto d-block">
     <form action="" method="post">

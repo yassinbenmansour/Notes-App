@@ -3,10 +3,11 @@ require("./includes/header.php");
 $database = new Database();
 ?>
 
-
-
 <div class="container">
     <div class="row mt-4">
+        <?php
+        require("./alert.php");
+        ?>
         <div class="co-md-6 mx-auto">
             <table class="table table-dark table-striped">
                 <thead>
